@@ -7,42 +7,45 @@ import { siteConfig } from '@/lib/config'
  * @returns
  */
 export function AnalyticsCard(props) {
-  const targetDate = new Date(siteConfig('HEO_SITE_CREATE_TIME', null, CONFIG))
+  const fallInLoveDate = new Date(siteConfig('HEO_SITE_CREATE_TIME', null, CONFIG))
   const today = new Date()
-  const diffTime = today.getTime() - targetDate.getTime() // 获取两个日期之间的毫秒数差值
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) // 将毫秒数差值转换为天数差值
-  const postCountTitle = siteConfig('HEO_POST_COUNT_TITLE', null, CONFIG)
-  const siteTimeTitle = siteConfig('HEO_SITE_TIME_TITLE', null, CONFIG)
-  const siteVisitTitle = siteConfig('HEO_SITE_VISIT_TITLE', null, CONFIG)
-  const siteVisitorTitle = siteConfig('HEO_SITE_VISITOR_TITLE', null, CONFIG)
+  const fallInLoveTime = today.getTime() - fallInLoveDate.getTime()
+  const fallInLoveDays = Math.ceil(fallInLoveTime / (1000 * 60 * 60 * 24))
+
+  const meetDate = new Date(siteConfig('HEO_MEET_TIME', null, CONFIG))
+  const meetTime = today.getTime() - meetDate.getTime()
+  const meetDays = Math.ceil(meetTime / (1000 * 60 * 60 * 24))
 
   const { postCount } = props
-  return <>
-        <div className='text-md flex flex-col space-y-1 justify-center px-3'>
-            <div className='inline'>
-                <div className='flex justify-between'>
-                    <div>{postCountTitle}</div>
-                    <div>{postCount}</div>
-                </div>
-            </div>
-            <div className='inline'>
-                <div className='flex justify-between'>
-                    <div>{siteTimeTitle}</div>
-                    <div>{diffDays} 天</div>
-                </div>
-            </div>
-            <div className='hidden busuanzi_container_page_pv'>
-                <div className='flex justify-between'>
-                    <div>{siteVisitTitle}</div>
-                    <div className='busuanzi_value_page_pv' />
-                </div>
-            </div>
-            <div className='hidden busuanzi_container_site_uv'>
-                <div className='flex justify-between'>
-                    <div>{siteVisitorTitle}</div>
-                    <div className='busuanzi_value_site_uv' />
-                </div>
-            </div>
+  return (
+    <>
+      <div className='text-md flex flex-col space-y-1 justify-center px-3'>
+        <div className='inline'>
+          <div className='flex justify-between'>
+            <div>内容:</div>
+            <div>{postCount} 篇</div>
+          </div>
         </div>
-        </>
+        <div className='inline'>
+          <div className='flex justify-between'>
+            <div>纪念日:</div>
+            <div>{fallInLoveDays} 天</div>
+          </div>
+        </div>
+        <div className='meet'>
+          <div className='flex justify-between'>
+            <div>邂逅:</div>
+            <div>{meetDays} 天</div>
+          </div>
+        </div>
+        {/* 访客数 */}
+        <div className='busuanzi_container_site_uv'>
+          <div className='flex justify-between'>
+            <div>访客数:</div>
+            <div className='busuanzi_value_site_uv' />
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }

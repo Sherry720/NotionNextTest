@@ -110,18 +110,18 @@ const nextConfig = {
     ]
   },
 
-  // 默认将feed重定向至 /public/rss/feed.xml
-  redirects: process.env.EXPORT
-    ? undefined
-    : async () => {
-        return [
-          {
-            source: '/feed',
-            destination: '/rss/feed.xml',
-            permanent: true
-          }
-        ]
-      },
+  // // 默认将feed重定向至 /public/rss/feed.xml
+  // redirects: process.env.EXPORT
+  //   ? undefined
+  //   : async () => {
+  //       return [
+  //         {
+  //           source: '/feed',
+  //           destination: '/rss/feed.xml',
+  //           permanent: true
+  //         }
+  //       ]
+  //     },
   // 重写url
   rewrites: process.env.EXPORT
     ? undefined

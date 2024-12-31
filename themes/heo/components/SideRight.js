@@ -34,7 +34,7 @@ export default function SideRight(props) {
 
   return (
     <div id='sideRight' className='hidden xl:block w-72 space-y-4 h-full'>
-      <InfoCard {...props} className='w-72 wow fadeInUp' />
+      {/*<InfoCard {...props} className='w-72 wow fadeInUp' />*/}
 
       <div className='sticky top-20 space-y-4'>
         {/* 文章页显示目录 */}
@@ -43,12 +43,6 @@ export default function SideRight(props) {
             <Catalog toc={post.toc} />
           </Card>
         )}
-
-        {/* 联系交流群 */}
-        <div className='wow fadeInUp'>
-          <TouchMeCard />
-        </div>
-
         {/* 最新文章列表 */}
         <div
           className={
@@ -59,8 +53,7 @@ export default function SideRight(props) {
 
         {rightAreaSlot}
 
-        <FaceBookPage />
-        <Live2D />
+
 
         {/* 标签和成绩 */}
         <Card
